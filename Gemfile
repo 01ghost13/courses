@@ -42,6 +42,10 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   # Annotates Rails Models, routes, fixtures, and others based on the database schema. (http://github.com/ctran/annotate_models)
   gem 'annotate', require: false
+  # factory_bot_rails provides integration between factory_bot and rails 4.2 or newer (https://github.com/thoughtbot/factory_bot_rails)
+  gem 'factory_bot_rails'
+  # Easily generate fake data (https://github.com/faker-ruby/faker)
+  gem 'faker', require: 'faker'
 end
 
 group :development do
