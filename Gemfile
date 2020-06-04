@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.7'
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Active Admin is a Ruby on Rails plugin for generating administration style interfaces. It abstracts common business application patterns to make it simple for developers to implement beautiful and elegant interfaces with very little effort. (https://activeadmin.info)
+gem 'activeadmin'
+
 group :development, :test do
   # Ruby fast debugger - base + CLI (https://github.com/deivid-rodriguez/byebug)
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
