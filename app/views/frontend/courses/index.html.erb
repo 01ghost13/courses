@@ -1,18 +1,22 @@
 <table>
   <thead>
     <tr>
-      <th><%= sort_link @ransack_search, :name, 'Name' %></th>
+      <th>Course name</th>
+      <th><%= sort_link @q, :min_date, 'Closest start date' %></th>
     </tr>
   </thead>
   <tbody>
-    <% @courses.each do |course| %>
+    <% @groups.each do |group| %>
       <tr>
         <td>
-          <%= course.name %>
+          <%= group.course.name %>
+        </td>
+        <td>
+          <%= group.min_date %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= paginate @courses %>
+<%= paginate @groups %>
