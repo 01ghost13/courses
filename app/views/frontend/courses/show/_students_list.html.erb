@@ -1,0 +1,21 @@
+<% if group.students.size.positive? %>
+  <h2>
+    From <%= group.date_start %> to <%= group.date_finish %>
+  </h2>
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <td>Email</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% group.students.each.with_index do |student, index| %>
+      <tr>
+        <td><%= index %></td>
+        <td><%= replace_with_stars(student.email) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

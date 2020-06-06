@@ -32,3 +32,7 @@
 </table>
 
 <%= paginate @groups %>
+
+<h2>Participated students</h2>
+<small>Emails are hidden for security reasons</small>
+<%= render collection: @groups, partial: 'frontend/courses/show/students_list', as: :group %>
