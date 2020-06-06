@@ -1,0 +1,26 @@
+<h1>
+  <%= @course.name %>, <%= link_to 'Back', courses_path %>
+</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th><%= sort_link @q, :date_start, 'Start date' %></th>
+    <th><%= sort_link @q, :date_finish, 'Finish date' %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @groups.each do |group| %>
+    <tr>
+      <td>
+        <%= group.date_start %>
+      </td>
+      <td>
+        <%= group.date_finish %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @groups %>

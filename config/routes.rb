@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   scope module: 'frontend' do
     root 'courses#index'
 
-    resources :courses, only: %i[index]
+    resources :courses, only: %i[index show]
   end
 end
