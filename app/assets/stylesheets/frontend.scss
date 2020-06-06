@@ -1,4 +1,21 @@
 .content {
   padding-left: 20%;
+  padding-top: 5%;
   width: 60%;
+}
+
+.form-input {
+  width: 60%;
+}
+
+.text-center {
+  text-align: center;
+}
+.alert-success {
+  color: green;
+  border: darkgreen solid 1px;
+}
+.alert-error {
+  color: red;
+  border: darkred solid 1px;
 }

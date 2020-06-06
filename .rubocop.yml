@@ -312,4 +312,7 @@ Rails/Validation:
 Rails/Presence:
   Enabled: true
 
+# this cop prefers has_and_belongs_to_many
+Rails/HasAndBelongsToMany:
+  Enabled: false
 

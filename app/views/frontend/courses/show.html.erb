@@ -7,6 +7,8 @@
   <tr>
     <th><%= sort_link @q, :date_start, 'Start date' %></th>
     <th><%= sort_link @q, :date_finish, 'Finish date' %></th>
+    <th>Students count</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -17,6 +19,12 @@
       </td>
       <td>
         <%= group.date_finish %>
+      </td>
+      <td>
+        <%= "#{group.students.size}/#{group.max_students}" %>
+      </td>
+      <td>
+        <%= link_to 'Subscribe!', new_group_student_path(group.id) %>
       </td>
     </tr>
   <% end %>

@@ -1,0 +1,14 @@
+<div class="text-center">
+  <h3>For subscription on course, please leave us your email </h3>
+  <div>
+    <%= form_for @student, url: group_students_path do |f| %>
+      <div style="display: inline-flex;">
+        <%= hidden_field_tag :group_id, params[:group_id] %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+        <%= f.submit 'Subscribe!' %>
+      </div>
+    <% end %>
+  </div>
+</div>

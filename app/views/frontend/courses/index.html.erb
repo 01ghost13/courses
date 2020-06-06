@@ -6,7 +6,9 @@
   <thead>
     <tr>
       <th>Course name</th>
-      <th><%= sort_link @q, :min_date, 'Closest start date' %></th>
+      <th><%= sort_link @q, :date_start, 'Closest start date' %></th>
+      <th>Students count</th>
+      <th><!-- Subscription btns --></th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +18,13 @@
           <%= link_to group.course.name, course_path(group.course_id) %>
         </td>
         <td>
-          <%= group.min_date %>
+          <%= group.date_start %>
+        </td>
+        <td>
+          <%= "#{group.students.size}/#{group.max_students}" %>
+        </td>
+        <td>
+          <%= link_to 'Subscribe!', new_group_student_path(group.id) %>
         </td>
       </tr>
     <% end %>

@@ -2,12 +2,13 @@
 #
 # Table name: groups
 #
-#  id          :bigint           not null, primary key
-#  date_finish :date             not null
-#  date_start  :date             not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  course_id   :bigint           not null
+#  id           :bigint           not null, primary key
+#  date_finish  :date             not null
+#  date_start   :date             not null
+#  max_students :integer          default(20), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  course_id    :bigint           not null
 #
 # Indexes
 #
@@ -19,12 +20,22 @@
 #
 class Group < ApplicationRecord
   belongs_to :course
+  has_and_belongs_to_many :students
 
-  scope :soonish, -> { select("course_id, min(groups.date_start) as min_date").group(:course_id) }
+  # Dirty but needed for using +from+ with different names of tables
+  scope :soonish, ->(table_name = 'groups') do
+    select("distinct on(\"#{table_name}\".\"course_id\") \"#{table_name}\".*")
+      .order("#{table_name}.course_id, #{table_name}.date_start")
+  end
+
   scope :bookable, -> { where('groups.date_start >= :date', date: Date.current) }
-  # Ransack custom sort
-  scope :sort_by_min_date_asc, -> { order(min_date: :asc) }
-  scope :sort_by_min_date_desc, -> { order(min_date: :desc) }
+
+  scope :has_places, -> do
+    grouped = select('groups.*, count(students.id) as students_count').left_outer_joins(:students).group('groups.id')
+    select('not_full.*').from(grouped, :not_full).where('not_full.students_count < not_full.max_students')
+  end
+
+  scope :soonest_with_places, -> { soonish('sub_group').from(has_places, :sub_group) }
 
   validates :date_finish, presence: true
   validates :date_start, presence: true

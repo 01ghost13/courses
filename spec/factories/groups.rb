@@ -2,12 +2,13 @@
 #
 # Table name: groups
 #
-#  id          :bigint           not null, primary key
-#  date_finish :date             not null
-#  date_start  :date             not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  course_id   :bigint           not null
+#  id           :bigint           not null, primary key
+#  date_finish  :date             not null
+#  date_start   :date             not null
+#  max_students :integer          default(20), not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  course_id    :bigint           not null
 #
 # Indexes
 #
@@ -22,5 +23,10 @@ FactoryBot.define do
     date_start { "2020-06-04" }
     date_finish { "2020-06-14" }
     course { build(:course) }
+  end
+
+  trait :full do
+    max_students { 1 }
+    students { build_list(:student, 1) }
   end
 end
