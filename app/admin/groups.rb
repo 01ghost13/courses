@@ -4,6 +4,7 @@ ActiveAdmin.register Group do
                 :course_id,
                 :max_students
 
-  preserve_default_filters!
   filter :date_start, as: :date_range
+  filter :date_finish, as: :date_range
+  filter :max_students, as: :numeric
 end

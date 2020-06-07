@@ -1,6 +1,6 @@
 <% if group.students.size.positive? %>
   <h2>
-    From <%= group.date_start %> to <%= group.date_finish %>
+    <%= group.decorate.name %>
   </h2>
   <table class="table">
     <thead class="thead-dark">

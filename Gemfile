@@ -34,7 +34,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Active Admin is a Ruby on Rails plugin for generating administration style interfaces. It abstracts common business application patterns to make it simple for developers to implement beautiful and elegant interfaces with very little effort. (https://activeadmin.info)
 gem 'activeadmin'
 
+# The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web. http://getbootstrap.com (https://github.com/twbs/bootstrap-rubygem)
 gem 'bootstrap', '~> 4.5.0'
+
+# View Models for Rails (http://github.com/drapergem/draper)
+gem 'draper'
 
 group :development, :test do
   # Ruby fast debugger - base + CLI (https://github.com/deivid-rodriguez/byebug)
@@ -65,6 +69,7 @@ group :development do
 end
 
 group :test do
+  # Strategies for cleaning databases using ActiveRecord. Can be used to ensure a clean state for testing. (https://github.com/DatabaseCleaner/database_cleaner-active_record)
   gem 'database_cleaner-active_record'
 end
 
