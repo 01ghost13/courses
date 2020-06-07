@@ -15,11 +15,12 @@ class CoursesIndex
   end
 
   def paged(page)
-    q = if @ransack_query.present?
-          @ransack_query.result
-        else
-          @query
-        end
+    q =
+      if @ransack_query.present?
+        @ransack_query.result
+      else
+        @query
+      end
 
     @result ||= q.page(page).per(PAGE_LIMIT)
   end

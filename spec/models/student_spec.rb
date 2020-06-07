@@ -17,5 +17,14 @@ RSpec.describe Student, type: :model do
     end
   end
 
-
+  context 'group capacity' do
+    before do
+      @student = build(:student)
+      @full_group = create(:group, :full)
+    end
+    it 'should check if group has free places' do
+      @student.groups << @full_group
+      expect(@student.valid?).to be_falsey
+    end
+  end
 end

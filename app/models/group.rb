@@ -20,7 +20,8 @@
 #
 class Group < ApplicationRecord
   belongs_to :course
-  has_and_belongs_to_many :students
+  has_many :groups_students, dependent: :destroy
+  has_many :students, through: :groups_students
 
   scope :soonish, -> { select('distinct on(groups.course_id) groups.*').order('groups.course_id, groups.date_start') }
 
@@ -30,6 +31,10 @@ class Group < ApplicationRecord
   validates :date_finish, presence: true
   validates :date_start, presence: true
   validate :date_order
+
+  def full?
+    students.size >= max_students
+  end
 
   private
 

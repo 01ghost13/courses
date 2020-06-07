@@ -24,7 +24,11 @@
         <%= "#{group.students.size}/#{group.max_students}" %>
       </td>
       <td>
-        <%= link_to 'Subscribe!', new_group_student_path(group.id) %>
+        <% if group.full? %>
+          Group is full
+        <% else %>
+          <%= link_to 'Subscribe!', new_group_student_path(group.id) %>
+        <% end %>
       </td>
     </tr>
   <% end %>

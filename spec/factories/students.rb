@@ -9,6 +9,7 @@
 #
 FactoryBot.define do
   factory :student do
-    email { "MyString" }
+    email { Faker::Internet.email }
+    groups { build_list(:group, 2) }
   end
 end
