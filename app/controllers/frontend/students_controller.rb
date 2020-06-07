@@ -5,16 +5,20 @@ class Frontend::StudentsController < FrontendController
 
   def create
     @student = Student.new(student_params)
-    @student.groups << Group.find(params[:group_id])
+    group = Group.find(params[:group_id])
 
-    if @student.save
-      flash[:success] = "You have been subscribed!"
+    group.with_lock do
+      @student.groups << group
 
-      redirect_to courses_path
-    else
-      flash[:error] = "Something went wrong"
+      if @student.save
+        flash[:success] = "You have been subscribed!"
 
-      render :new
+        redirect_to courses_path
+      else
+        flash[:error] = "Something went wrong"
+
+        render :new
+      end
     end
   end
 

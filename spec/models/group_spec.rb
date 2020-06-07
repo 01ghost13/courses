@@ -80,15 +80,5 @@ RSpec.describe Group, type: :model do
         expect(loaded_groups.date_start).to be >= Date.current
       end
     end
-
-    context 'has_places' do
-      before do
-        @groups_full = create(:group, :full)
-      end
-
-      it 'should return only free groups' do
-        expect(Group.has_places.to_a.size).to eq(@groups.count)
-      end
-    end
   end
 end
