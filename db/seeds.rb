@@ -16,3 +16,4 @@ end
 # make one full
 last = groups.last
 CAPACITY.times { |i| last.students.create(email: "student_#{i}@mail.ru") }
+groups.first.students.create(email: 'one_student@email.ru')

@@ -1,42 +1,50 @@
-<h1>
-  <%= @course.name %>, <%= link_to 'Back', courses_path %>
-</h1>
+<div class="row">
+  <div class="col-12">
+    <h1>
+      <%= @course.name %>, <%= link_to 'Back', courses_path %>
+    </h1>
 
-<table>
-  <thead>
-  <tr>
-    <th><%= sort_link @q, :date_start, 'Start date' %></th>
-    <th><%= sort_link @q, :date_finish, 'Finish date' %></th>
-    <th>Students count</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @groups.each do |group| %>
-    <tr>
-      <td>
-        <%= group.date_start %>
-      </td>
-      <td>
-        <%= group.date_finish %>
-      </td>
-      <td>
-        <%= "#{group.students.size}/#{group.max_students}" %>
-      </td>
-      <td>
-        <% if group.full? %>
-          Group is full
-        <% else %>
-          <%= link_to 'Subscribe!', new_group_student_path(group.id) %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th><%= sort_link @q, :date_start, 'Start date' %></th>
+        <th><%= sort_link @q, :date_finish, 'Finish date' %></th>
+        <th>Students count</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td>
+            <%= group.date_start %>
+          </td>
+          <td>
+            <%= group.date_finish %>
+          </td>
+          <td>
+            <%= "#{group.students.size}/#{group.max_students}" %>
+          </td>
+          <td>
+            <%= subscription_btn(group) %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-<%= paginate @groups %>
+    <%= paginate @groups %>
+  </div>
+</div>
 
-<h2>Participated students</h2>
-<small>Emails are hidden for security reasons</small>
-<%= render collection: @groups, partial: 'frontend/courses/show/students_list', as: :group %>
+<div class="row">
+  <div class="col-12">
+    <h2>
+      Participated students
+    </h2>
+    <h4>Emails are hidden for security reasons</h4>
+    <%= render collection: @groups, partial: 'frontend/courses/show/students_list', as: :group %>
+    <br>
+  </div>
+</div>
+

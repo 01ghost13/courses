@@ -1,34 +1,38 @@
-<h1>
-  Soonest Courses
-</h1>
+<div class="row">
+  <div class="col-12">
+    <h1>
+      Soonest Courses
+    </h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Course name</th>
-      <th><%= sort_link @q, :date_start, 'Closest start date' %></th>
-      <th>Students count</th>
-      <th><!-- Subscription btns --></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @groups.each do |group| %>
+    <table class="table">
+      <thead class="thead-dark">
       <tr>
-        <td>
-          <%= link_to group.course.name, course_path(group.course_id) %>
-        </td>
-        <td>
-          <%= group.date_start %>
-        </td>
-        <td>
-          <%= "#{group.students.size}/#{group.max_students}" %>
-        </td>
-        <td>
-          <%= link_to 'Subscribe!', new_group_student_path(group.id) %>
-        </td>
+        <th>Course name</th>
+        <th><%= sort_link @q, :date_start, 'Closest start date' %></th>
+        <th>Students count</th>
+        <th><!-- Subscription btns --></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td>
+            <%= link_to group.course.name, course_path(group.course_id) %>
+          </td>
+          <td>
+            <%= group.date_start %>
+          </td>
+          <td>
+            <%= "#{group.students.size}/#{group.max_students}" %>
+          </td>
+          <td>
+            <%= subscription_btn(group) %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-<%= paginate @groups %>
+    <%= paginate @groups %>
+  </div>
+</div>

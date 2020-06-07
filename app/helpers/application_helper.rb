@@ -4,4 +4,15 @@ module ApplicationHelper
     string[from..to] = '*' * 4
     string
   end
+
+  def subscription_btn(group)
+    if group.full?
+      'Group is full'
+    else
+      link_to 'Subscribe!',
+              new_group_student_path(group.id),
+              class: 'btn btn-primary',
+              role: 'button'
+    end
+  end
 end
